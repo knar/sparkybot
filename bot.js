@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
+const date = require('date-and-time');
  
 client.on("ready", () => {
   console.log("I am ready!");
@@ -80,6 +81,28 @@ client.on("message", message => {
             .setDescription(`The skill ranks are seperate from sparky aim. Graduate here: http://bit.ly/2NvOVqY`);
         message.channel.send({embed});
     }
-  });
+});
+
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+    let newUserChannel = newMember.voiceChannel
+    let oldUserChannel = oldMember.voiceChannel
+    const auditChannel = client.channels.get('632799905471135764');
+
+    let embed = new Discord.RichEmbed()
+        .setColor('#0099ff')
+        .setTimestamp();
+
+    let statusString = '';
+
+    if(oldUserChannel === undefined && newUserChannel !== undefined) {
+        statusString += oldMember.displayName + ' entered ' + newUserChannel.name;
+        embed.setTitle(statusString);
+        auditChannel.send(embed);
+    } else if(newUserChannel === undefined){
+        statusString += oldMember.displayName + ' left ' + oldUserChannel.name;
+        embed.setTitle(statusString);
+        auditChannel.send(embed);
+    }
+});
  
 client.login(config.token);
