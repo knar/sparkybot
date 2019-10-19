@@ -16,6 +16,9 @@ client.on("message", message => {
     const clips = message.channel.guild.channels.find(channel => channel.id === '439237455053455360');
     const commands = message.channel.guild.channels.find(channel => channel.id === '601484132006232064');
 
+    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+
     if (message.author.bot) return;
 
     if(command === 'noc') {
@@ -29,8 +32,7 @@ client.on("message", message => {
     // This is where we'll put our code.
     if (message.content.indexOf(config.prefix) !== 0) return;
    
-    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-    const command = args.shift().toLowerCase();
+
 
 
     if(command === 'welcome') {
