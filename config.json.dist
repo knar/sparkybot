@@ -1,5 +1,8 @@
 {
   "token": "insert-bot-token-here",
   "prefix": "s-",
-  "ownerID": "your-user-ID"
+  "admin_ids": [
+      <id_1>,
+      <id_2>
+  ]
 }

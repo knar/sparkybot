@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
-const date = require('date-and-time');
  
 client.on("ready", () => {
   console.log("I am ready!");
@@ -19,7 +18,6 @@ client.on("message", message => {
 
     if (message.author.bot) return;
     if(!config.admin_ids.includes(message.author.id)) {
-        console.log("not admin");
             return;
     }
 
@@ -44,11 +42,11 @@ client.on("message", message => {
             .setTitle("Starting out :books:")
             .setColor("#8E5BAD")
             .setDescription(`:white_small_square: Read the ${rules} and self-assign ${roles}.
-            \n:white_small_square: Fold / mute the categories/channels that you're not interested in.
-            \n:white_small_square: Feel free to make use of our :video_game: Game Tips and :notebook_with_decorative_cover: Improving tips.
-            \n:white_small_square: Post ${clips}, ${tweets} and ${streams} in the respective channels.
-            \n:white_small_square: We got more than 3 music bots, check it out in ${commands}.
-            \n:white_small_square: Try and match your name on discord with your in-game name.`);
+            :white_small_square: Fold / mute the categories/channels that you're not interested in.
+            :white_small_square: Feel free to make use of our :video_game: Game Tips and :notebook_with_decorative_cover: Improving tips.
+            :white_small_square: Post ${clips}, ${tweets} and ${streams} in the respective channels.
+            :white_small_square: We got more than 3 music bots, check it out in ${commands}.
+            :white_small_square: Try and match your name on discord with your in-game name.`);
         message.channel.send({embed});
             
         embed = new Discord.RichEmbed()
@@ -58,7 +56,7 @@ client.on("message", message => {
         message.channel.send({embed});
 
         embed = new Discord.RichEmbed()
-            .setTitle("Sparky Aim :dart::")
+            .setTitle("Sparky Aim :dart:")
             .setColor ("#2FCFC2")
             .setDescription(`An aim community centered around self-improvement, with the intend to improve/challenge both great and upcoming aimers.`);
         message.channel.send({embed});
@@ -86,21 +84,22 @@ client.on("message", message => {
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     let newUserChannel = newMember.voiceChannel
     let oldUserChannel = oldMember.voiceChannel
-    const auditChannel = client.channels.get('632799905471135764');
+    const auditChannel = client.channels.get('632982155835867168');
 
     let embed = new Discord.RichEmbed()
-        .setColor('#0099ff')
         .setTimestamp();
 
     let statusString = '';
 
     if(oldUserChannel === undefined && newUserChannel !== undefined) {
-        statusString += oldMember.displayName + ' entered ' + newUserChannel.name;
+        statusString += '*' + oldMember.displayName + '*' + ' entered ' + newUserChannel.name;
         embed.setTitle(statusString);
+        embed.setColor('#7DD420');
         auditChannel.send(embed);
     } else if(newUserChannel === undefined){
-        statusString += oldMember.displayName + ' left ' + oldUserChannel.name;
+        statusString += '*' + oldMember.displayName + '*' + ' left ' + oldUserChannel.name;
         embed.setTitle(statusString);
+        embed.setColor('D8534E');
         auditChannel.send(embed);
     }
 });
