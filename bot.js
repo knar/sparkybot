@@ -17,6 +17,11 @@ client.on("message", message => {
     const commands = message.channel.guild.channels.find(channel => channel.id === '601484132006232064');
 
     if (message.author.bot) return;
+
+    if(command === 'noc') {
+        message.channel.send('meow');
+    }
+
     if(!config.admin_ids.includes(message.author.id)) {
             return;
     }
@@ -27,9 +32,6 @@ client.on("message", message => {
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    if(command === 'noc') {
-      message.channel.send('meow');
-    }
 
     if(command === 'welcome') {
         let embed = new Discord.RichEmbed()
@@ -52,7 +54,7 @@ client.on("message", message => {
         embed = new Discord.RichEmbed()
             .setTitle("Invite your friends :mailbox_with_mail:")
             .setColor ("#62C377")
-            .setDescription(':small_blue_diamond: Perma invite link: https://discord.gg/cXQbNSE');
+            .setDescription(':small_blue_diamond: Perma invite link: https://discord.gg/sparky');
         message.channel.send({embed});
 
         embed = new Discord.RichEmbed()
