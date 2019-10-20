@@ -27,6 +27,10 @@ client.on("message", message => {
         message.channel.send('meow');
     }
 
+    if(command === 'crescendo') {
+        message.channel.send('chad volleyballer');
+    }
+
     if(!config.admin_ids.includes(message.author.id)) {
             return;
     }
