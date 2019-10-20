@@ -61,8 +61,14 @@ client.on("message", message => {
 
         embed = new Discord.RichEmbed()
             .setTitle("Sparky Aim :dart:")
-            .setColor ("#2FCFC2")
-            .setDescription(`An aim community centered around self-improvement, with the intend to improve/challenge both great and upcoming aimers.`);
+            .setColor (3133378)
+            .setDescription(`An aim community centered around self-improvement, with the intend to improve/challenge both great and upcoming aimers. \n \n Apply here: https://forms.gle/g4TrwSi8bbce1Xt2A`);
+        message.channel.send({embed});
+
+        embed = new Discord.RichEmbed()
+            .setTitle("Sparky Skill :cherry_blossom:")
+            .setColor (16029119)
+            .setDescription(`Sparky skill is a group of people who excel in their game, \n notable for their aim technique. \n \n Apply here: *coming soon*`);
         message.channel.send({embed});
 
         embed = new Discord.RichEmbed()
@@ -81,6 +87,12 @@ client.on("message", message => {
             .setTitle("Graduate :mortar_board:")
             .setColor ("#2F3137")
             .setDescription(`The skill ranks are seperate from sparky aim. Graduate here: http://bit.ly/2NvOVqY`);
+        message.channel.send({embed});
+
+        embed = new Discord.RichEmbed()
+            .setTitle("Socials :rocket:")
+            .setColor (15662913)
+            .setDescription(`:small_blue_diamond: Steam: <https://steamcommunity.com/groups/sparkyaim> \n :small_blue_diamond: Steam Fans: <https://steamcommunity.com/groups/sparkysfanclub> \n :small_blue_diamond: Twitter:  <https://twitter.com/SparkyAimers> \n :small_blue_diamond: Twitch: <https://www.twitch.tv/team/sparkyaim> \n :small_blue_diamond: Instagram: <https://www.instagram.com/sparkyaim> \n :small_blue_diamond: Creator code: `SparkyGG``);
         message.channel.send({embed});
     }
 });
