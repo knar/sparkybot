@@ -13,6 +13,7 @@ client.on("message", message => {
     const command = args.shift().toLowerCase();
 
     if (message.author.bot) return;
+    if (message.content.indexOf(config.prefix) !== 0) return;
 
     if (command === 'noc') {
         message.channel.send('meow');
@@ -20,10 +21,6 @@ client.on("message", message => {
 
     if (command === 'crescendo') {
         message.channel.send('chad volleyballer');
-    }
-
-    if (!config.admin_ids.includes(message.author.id)) {
-            return;
     }
     
     if (command === 'upgrade') {
@@ -38,8 +35,9 @@ client.on("message", message => {
         message.channel.send('mana manages to manifest itself in shooters as an unknown entity... he is not a resource that can be used - he is the *user*');
     }
 
-    // admin only
-    if (message.content.indexOf(config.prefix) !== 0) return;
+    if (!config.admin_ids.includes(message.author.id)) {
+        return;
+    }
 
     if (command === 'welcome') {
         embedCommands.sendWelcomeToChannel(message);
