@@ -25,13 +25,6 @@ client.on("message", message => {
     if (!config.admin_ids.includes(message.author.id)) {
             return;
     }
-
-    // This is where we'll put our code.
-    if (message.content.indexOf(config.prefix) !== 0) return;
-
-    if (command === 'welcome') {
-        embedCommands.sendWelcomeToChannel(message);
-    }
     
     if (command === 'upgrade') {
         embedCommands.sendUpgradeEmbed(message);
@@ -43,6 +36,13 @@ client.on("message", message => {
 
     if (command === 'mana') {
         message.channel.send('mana manages to manifest itself in shooters as an unknown entity... he is not a resource that can be used - he is the *user*');
+    }
+
+    // admin only
+    if (message.content.indexOf(config.prefix) !== 0) return;
+
+    if (command === 'welcome') {
+        embedCommands.sendWelcomeToChannel(message);
     }
 });
 
