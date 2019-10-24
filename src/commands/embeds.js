@@ -73,6 +73,7 @@ function sendWelcomeToChannel(message) {
         message.channel.send(graduate);
         message.channel.send(socials);
         message.channel.send(boosting);
+        sendSupportSparkyEmbed(message);
 }
 
 function sendUpgradeEmbed(message) {
