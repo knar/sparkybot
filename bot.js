@@ -52,6 +52,10 @@ client.on("message", message => {
         message.channel.send('Available commands: ' + commandString);
     }
 
+    if (command === 'TeXit') {
+        message.channel.send('beep boop my brother beep boop');
+    }
+
     if (command === 'noc') {
         message.channel.send('meow');
     }
