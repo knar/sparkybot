@@ -103,9 +103,10 @@ function sendSupportSparkyEmbed(message) {
     .setTitle("Supporting Sparky :money_with_wings:")
     .setColor (10527594)
     .setThumbnail('https://i.imgur.com/cJ0TZg1.png')
-    .setDescription(":white_small_square: [Become a Patron](https://www.patreon.com/sparkygg) and support Sparky and upcoming projects \n \
-    :white_small_square: Use our [InkedGaming affiliate link](https://www.inkedgaming.com/?rfsn=3266061.81e879&utm_source=refersion&utm_medium=affiliate&utm_campaign=3266061.81e879) or coupon code `sparkyaim` \n \
-    :white_small_square: Use our Epic Games creator code `sparkygg` \n \
+    .setDescription(":white_small_square: [Become a Patron](https://www.patreon.com/sparkygg) and support Sparky\n \
+    :white_small_square: Use our [InkedGaming affiliate link](https://www.inkedgaming.com/?rfsn=3266061.81e879&utm_source=refersion&utm_medium=affiliate&utm_campaign=3266061.81e879)\n \
+    :white_small_square: Or use our InkedGaming coupon code: sparkyaim\n \
+    :white_small_square: Use our Epic Games creator code `sparkygg`\n \
     :white_small_square: Subscribe [via twitch](https://www.twitch.tv/siniaims), donate bits or [donate via paypal](https://www.paypal.me/syntensity)"
     );
 

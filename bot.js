@@ -2,6 +2,8 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
 const embedCommands = require('./src/commands/embeds');
+const sensConvert = require('./src/commands/sensConvert');
+const _ = require('lodash');
 
 const SPARKY_VARIANTS = [
     'sparkyaimers',
@@ -28,6 +30,12 @@ const SUPPORT_VARIANTS = [
     'support',
     'donate'
 ];
+
+const COMMAND_LIST = _.flatten([
+    SPARKY_VARIANTS,
+    UPGRADE_VARIANTS,
+    SUPPORT_VARIANTS
+]);
  
 client.on("ready", () => {
   console.log("I am ready!");
@@ -40,6 +48,11 @@ client.on("message", message => {
 
     if (message.author.bot) return;
     if (message.content.indexOf(config.prefix) !== 0) return;
+
+    if (command === 'help') {
+        const commandString = COMMAND_LIST.join(', ');
+        message.channel.send('Available commands: ' + commandString);
+    }
 
     if (command === 'noc') {
         message.channel.send('meow');
@@ -64,6 +77,10 @@ client.on("message", message => {
     if (SUPPORT_VARIANTS.includes(command)) {
         embedCommands.sendSupportSparkyEmbed(message);
     }
+
+    try {
+        sensConvert.checkSensConvertCommands(message, command, args);
+    } catch(error) {}
 
     if (!config.admin_ids.includes(message.author.id)) {
         return;
