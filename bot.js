@@ -2,6 +2,32 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
 const embedCommands = require('./src/commands/embeds');
+
+const SPARKY_VARIANTS = [
+    'sparkyaimers',
+    'sparkyaim',
+    'sparkyaim',
+    'sparky',
+    'aim',
+    'aimers',
+    'godaimers<:^)'
+];
+
+const UPGRADE_VARIANTS = [
+    'upgrade',
+    'benchmark',
+    'benchmarks',
+    'levelup',
+    'level-up',
+    'rank-up',
+    'graduate',
+    'graduates'
+];
+
+const SUPPORT_VARIANTS = [
+    'support',
+    'donate'
+];
  
 client.on("ready", () => {
   console.log("I am ready!");
@@ -19,20 +45,24 @@ client.on("message", message => {
         message.channel.send('meow');
     }
 
-    if (command === 'crescendo') {
+    if (command === 'tony') {
         message.channel.send('chad volleyballer');
     }
     
-    if (command === 'upgrade') {
+    if (UPGRADE_VARIANTS.includes(command)) {
         embedCommands.sendUpgradeEmbed(message);
     }
-
-    if (command === 'sparkyaimers') {
+    
+    if (SPARKY_VARIANTS.includes(command)) {
         embedCommands.sendSparkyAimEmbed(message);
     }
 
     if (command === 'mana') {
         message.channel.send('mana manages to manifest itself in shooters as an unknown entity... he is not a resource that can be used - he is the *user*');
+    }
+    
+    if (SUPPORT_VARIANTS.includes(command)) {
+        embedCommands.sendSupportSparkyEmbed(message);
     }
 
     if (!config.admin_ids.includes(message.author.id)) {
