@@ -8,11 +8,9 @@ const _ = require('lodash');
 const SPARKY_VARIANTS = [
     'sparkyaimers',
     'sparkyaim',
-    'sparkyaim',
     'sparky',
     'aim',
-    'aimers',
-    'godaimers<:^)'
+    'aimers'
 ];
 
 const UPGRADE_VARIANTS = [
