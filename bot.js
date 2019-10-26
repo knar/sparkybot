@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const config = require("./config.json");
 const embedCommands = require('./src/commands/embeds');
 const sensConvert = require('./src/commands/sensConvert');
+const textCommands = require('./src/commands/text');
 const _ = require('lodash');
 
 const SPARKY_VARIANTS = [
@@ -52,18 +53,6 @@ client.on("message", message => {
         message.channel.send('Available commands: ' + commandString);
     }
 
-    if (command === 'TeXit') {
-        message.channel.send('beep boop my brother beep boop');
-    }
-
-    if (command === 'noc') {
-        message.channel.send('meow');
-    }
-
-    if (command === 'tony') {
-        message.channel.send('chad volleyballer');
-    }
-    
     if (UPGRADE_VARIANTS.includes(command)) {
         embedCommands.sendUpgradeEmbed(message);
     }
@@ -81,6 +70,7 @@ client.on("message", message => {
     }
 
     try {
+        textCommands.checkTextCommands(message, command, args);
         sensConvert.checkSensConvertCommands(message, command, args);
     } catch(error) {}
 
