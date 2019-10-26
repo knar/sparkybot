@@ -20,7 +20,7 @@ function checkTextCommands(message, command, args) {
                 console.log('cant read file');
                 return;
             }
-            message.channel.send('data');
+            message.channel.send(data);
         });
     }
 }
