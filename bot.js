@@ -84,25 +84,31 @@ client.on("message", message => {
 });
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
-    let newUserChannel = newMember.voiceChannel
-    let oldUserChannel = oldMember.voiceChannel
-    const auditChannel = client.channels.get('632982155835867168');
+    // think there is an error when someone leaves a custom channel and the channel is deleted before
+    // we can get the name of it, in that case just fail silently
+    try {
+        let newUserChannel = newMember.voiceChannel
+        let oldUserChannel = oldMember.voiceChannel
+        const auditChannel = client.channels.get('632982155835867168');
 
-    let embed = new Discord.RichEmbed()
-        .setTimestamp();
+        let embed = new Discord.RichEmbed()
+            .setTimestamp();
 
-    let statusString = '';
+        let statusString = '';
 
-    if(oldUserChannel === undefined && newUserChannel !== undefined) {
-        statusString += '*' + oldMember.displayName + '*' + ' entered ' + newUserChannel.name;
-        embed.setTitle(statusString);
-        embed.setColor('#7DD420');
-        auditChannel.send(embed);
-    } else if(newUserChannel === undefined){
-        statusString += '*' + oldMember.displayName + '*' + ' left ' + oldUserChannel.name;
-        embed.setTitle(statusString);
-        embed.setColor('D8534E');
-        auditChannel.send(embed);
+        if(oldUserChannel === undefined && newUserChannel !== undefined) {
+            statusString += '*' + oldMember.displayName + '*' + ' entered ' + newUserChannel.name;
+            embed.setTitle(statusString);
+            embed.setColor('#7DD420');
+            auditChannel.send(embed);
+        } else if(newUserChannel === undefined){
+            statusString += '*' + oldMember.displayName + '*' + ' left ' + oldUserChannel.name;
+            embed.setTitle(statusString);
+            embed.setColor('D8534E');
+            auditChannel.send(embed);
+        }
+    } catch(error) {
+        console.log(error);
     }
 });
  

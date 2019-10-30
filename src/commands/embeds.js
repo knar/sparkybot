@@ -56,7 +56,12 @@ function sendWelcomeToChannel(message) {
         let socials = new Discord.RichEmbed()
             .setTitle("Socials :rocket:")
             .setColor (15662913)
-            .setDescription(`:small_blue_diamond: Steam: <https://steamcommunity.com/groups/sparkyaim> \n :small_blue_diamond: Steam Fans: <https://steamcommunity.com/groups/sparkysfanclub> \n :small_blue_diamond: Twitter:  <https://twitter.com/SparkyAimers> \n :small_blue_diamond: Twitch: <https://www.twitch.tv/team/sparkyaim> \n :small_blue_diamond: Instagram: <https://www.instagram.com/sparkyaim> \n :small_blue_diamond: Creator code: \`SparkyGG\``);
+            .setDescription(`:white_small_square: Website: https://sparky.gg \n \
+            :small_blue_diamond: Steam: <https://steamcommunity.com/groups/sparkyaim> \n \
+            :small_blue_diamond: Steam Fans: <https://steamcommunity.com/groups/sparkysfanclub> \n \
+            :small_blue_diamond: Twitter:  <https://twitter.com/SparkyAimers> \n \
+            :small_blue_diamond: Twitch: <https://www.twitch.tv/team/sparkyaim> \n \
+            :small_blue_diamond: Instagram: <https://www.instagram.com/sparkyaim> \n`);
         
         let boosting = new Discord.RichEmbed()
             .setTitle("Boosting Sparky :hibiscus:")
@@ -105,6 +110,7 @@ function sendSupportSparkyEmbed(message) {
     .setColor (10527594)
     .setThumbnail('https://i.imgur.com/cJ0TZg1.png')
     .setDescription(":white_small_square: [Become a Patron](https://www.patreon.com/sparkygg) and support Sparky\n \
+    :white_small_square: Purchase a [Sparky mousepad](https://www.inkedgaming.com/collections/art/sparky-logo)\n \
     :white_small_square: Use our [InkedGaming affiliate link](https://www.inkedgaming.com/?rfsn=3266061.81e879&utm_source=refersion&utm_medium=affiliate&utm_campaign=3266061.81e879)\n \
     :white_small_square: Or use our InkedGaming coupon code: `sparkyaim`\n \
     :white_small_square: Use our Epic Games creator code `sparkygg`\n \
