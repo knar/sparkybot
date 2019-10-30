@@ -56,7 +56,7 @@ function sendWelcomeToChannel(message) {
         let socials = new Discord.RichEmbed()
             .setTitle("Socials :rocket:")
             .setColor (15662913)
-            .setDescription(`:white_small_square: Website: https://sparky.gg \n \
+            .setDescription(`:small_blue_diamond: Website: https://sparky.gg \n \
             :small_blue_diamond: Steam: <https://steamcommunity.com/groups/sparkyaim> \n \
             :small_blue_diamond: Steam Fans: <https://steamcommunity.com/groups/sparkysfanclub> \n \
             :small_blue_diamond: Twitter:  <https://twitter.com/SparkyAimers> \n \
