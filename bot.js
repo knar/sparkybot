@@ -20,9 +20,6 @@ const UPGRADE_VARIANTS = [
     'upgrade',
     'benchmark',
     'benchmarks',
-    'levelup',
-    'level-up',
-    'rank-up',
     'graduate',
     'graduates'
 ];
@@ -32,11 +29,13 @@ const SUPPORT_VARIANTS = [
     'donate'
 ];
 
-const COMMAND_LIST = _.flatten([
+const COMMAND_ARRAY = [
     SPARKY_VARIANTS,
     UPGRADE_VARIANTS,
-    SUPPORT_VARIANTS
-]);
+    SUPPORT_VARIANTS,
+]
+
+const COMMAND_LIST = _.flatten([COMMAND_ARRAY]);
  
 client.on("ready", () => {
   console.log("I am ready!");
@@ -52,9 +51,8 @@ client.on("message", message => {
 
     message.delete(100);
 
-    if (command === 'help') {
-        const commandString = COMMAND_LIST.join(', ');
-        message.channel.send('Available commands: ' + commandString);
+    if (['help', 'listcommands', 'commands'].includes(command)) {
+        customCommands.listCommands(COMMAND_LIST, message, command, args);
     }
 
     if (UPGRADE_VARIANTS.includes(command)) {
@@ -91,6 +89,7 @@ client.on("message", message => {
 
     try {
         customCommands.createCommand(message,command, args);
+        customCommands.deleteCommand(message,command, args);
         sendMessageAsBot.checkSendMessageToChannel(message, command, args);
     } catch(error) {
         console.log(error);

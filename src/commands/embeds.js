@@ -85,7 +85,7 @@ function sendUpgradeEmbed(message) {
     let upgrade = new Discord.RichEmbed()
             .setTitle("Want to increase your skill rank? :mortar_board: ")
             .setColor (11342935)
-            .setDescription("Check out our benchmarks: http://bit.ly/2PdgZlm \n Graduate here: http://bit.ly/2NvOVqY");
+            .setDescription("Check out our benchmarks: http://bit.ly/2PdgZlm \nGraduate here: http://bit.ly/2NvOVqY");
     
     message.channel.send(upgrade);
 }
@@ -94,11 +94,10 @@ function sendSparkyAimEmbed(message) {
     let sparkyAim = new Discord.RichEmbed()
             .setTitle("Sparky Aim :zap:")
             .setColor (16755763)
-            .setDescription(`An aim group for people who are already great at aiming, \n \
-                or are trying to improve to become the best they can be. \n \
-                Minimum requirements: \n \n \`01\` Platinum level aim {intermediate} | \
-                benchmarks: http://bit.ly/2PdgZlm \n \
-                \`02\` Experience in FPS games \n \n You can apply here: https://forms.gle/g4TrwSi8bbce1Xt2A`
+            .setDescription(`An aim group for people who are already great at aiming, or are trying to improve to become the best they can be. \n\n\
+Minimum requirements: \n \n \`01\` Platinum level aim {intermediate} | \
+benchmarks: http://bit.ly/2PdgZlm \n \
+\`02\` Experience in FPS games \n \nYou can apply here: https://forms.gle/g4TrwSi8bbce1Xt2A`
             );
     
     message.channel.send(sparkyAim);
@@ -109,13 +108,11 @@ function sendSupportSparkyEmbed(message) {
     .setTitle("Supporting Sparky :money_with_wings:")
     .setColor (10527594)
     .setThumbnail('https://i.imgur.com/cJ0TZg1.png')
-    .setDescription(":white_small_square: [Become a Patron](https://www.patreon.com/sparkygg) and support Sparky\n \
-    :white_small_square: Purchase a [Sparky mousepad](https://www.inkedgaming.com/collections/art/sparky-logo)\n \
-    :white_small_square: Use our [InkedGaming affiliate link](https://www.inkedgaming.com/?rfsn=3266061.81e879&utm_source=refersion&utm_medium=affiliate&utm_campaign=3266061.81e879)\n \
-    :white_small_square: Or use our InkedGaming coupon code: `sparkyaim`\n \
-    :white_small_square: Use our Epic Games creator code `sparkygg`\n \
-    :white_small_square: Subscribe [via twitch](https://www.twitch.tv/siniaims), donate bits or [donate via paypal](https://www.paypal.me/syntensity)"
-    );
+    .setDescription(":white_small_square: [Become a Patron](https://www.patreon.com/sparkygg) and support Sparky\n\
+:white_small_square: Purchase a [Sparky mousepad](https://www.inkedgaming.com/collections/artists/sparky)\n\
+:white_small_square: Use our [InkedGaming affiliate link](https://inkedgaming.com/sparky)\n\
+:white_small_square: Epic Games creator code: `SparkyGG`\n\
+:white_small_square: Subscribe [via twitch](https://www.twitch.tv/siniaims), donate bits or [donate via paypal](https://www.paypal.me/syntensity)");
 
     message.channel.send(supportSparky);
 }
