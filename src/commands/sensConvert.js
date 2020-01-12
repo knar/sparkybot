@@ -158,12 +158,13 @@ function checkSensConvertCommands(message, command, args) {
             send_msg = false;
     }
 
-    // trim trailing comma and whitespace
-    out = out.replace(/,\s*$/g, '');
-    // construct reply mentioning the user
-    let reply = "<@" + message.author.id + ">" + ": " + out;
-    let chan = message.channel;
     if (send_msg && out.length > 0) {
+        // trim trailing comma and whitespace
+        out = out.replace(/,\s*$/g, '');
+        // construct reply mentioning the user
+        let reply = "<@" + message.author.id + ">" + ": " + out;
+        let chan = message.channel;
+    
         chan.send(reply);
     }
 }

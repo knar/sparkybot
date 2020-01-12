@@ -4,6 +4,7 @@ const config = require("./config.json");
 const embedCommands = require('./src/commands/embeds');
 const sensConvert = require('./src/commands/sensConvert');
 const textCommands = require('./src/commands/text');
+const sendMessageAsBot = require('./src/commands/sendMessage');
 const _ = require('lodash');
 
 const SPARKY_VARIANTS = [
@@ -72,7 +73,9 @@ client.on("message", message => {
     try {
         textCommands.checkTextCommands(message, command, args);
         sensConvert.checkSensConvertCommands(message, command, args);
-    } catch(error) {}
+    } catch(error) {
+        console.log(error);
+    }
 
     if (!config.admin_ids.includes(message.author.id)) {
         return;
@@ -80,6 +83,12 @@ client.on("message", message => {
 
     if (command === 'welcome') {
         embedCommands.sendWelcomeToChannel(message);
+    }
+
+    try {
+        sendMessageAsBot.checkSendMessageToChannel(message, command, args);
+    } catch(error) {
+        console.log(error);
     }
 });
 
