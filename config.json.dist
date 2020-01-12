@@ -4,5 +4,9 @@
   "admin_ids": [
       <id_1>,
       <id_2>
-  ]
+  ],
+  "email": {
+    "user": "sparkybot1234@gmail.com",
+    "pass": "insert-password-here"
+  }
 }

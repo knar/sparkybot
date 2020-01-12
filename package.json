@@ -7,6 +7,7 @@
     "app-root-path": "^2.2.1",
     "discord.js": "^11.5.1",
     "lodash": "^4.17.15",
+    "nodemailer": "^6.4.2",
     "tofixed": "^1.0.0"
   },
   "devDependencies": {},
