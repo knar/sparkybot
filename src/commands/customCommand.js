@@ -115,7 +115,7 @@ function listCommands(preCreatedCommandArray, message, command, args) {
                     }
                     commandNameArray.sort();
                     for (commandName of preCreatedCommandArray) {
-                        commandNameArray.push(commandName);
+                        commandNameArray.unshift(commandName);
                     }
 
                     descriptionString = '';
