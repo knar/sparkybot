@@ -49,6 +49,8 @@ client.on("message", message => {
     if (message.author.bot) return;
     if (message.content.indexOf(config.prefix) !== 0) return;
 
+    message.delete(100);
+
     if (command === 'help') {
         const commandString = COMMAND_LIST.join(', ');
         message.channel.send('Available commands: ' + commandString);
