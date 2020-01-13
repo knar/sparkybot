@@ -30,7 +30,7 @@ function createCommand(message, command, args) {
                                 console.log('create command error: ' + err);
                             }
                         });
-                        message.channel.send('command created: ' + commandName);
+                        message.channel.send('<@' + message.author.id + '>\ncommand created: `' + commandName + '`\ncommand message:\n' + commandString);
                     } else {
                         message.channel.send('usage: `s-createcommand <name of command> <command message>`');
                     }
