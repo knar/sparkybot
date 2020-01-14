@@ -12,6 +12,7 @@ function checkSendMessageToChannel(message, command, args) {
         } else {
             message.channel.send('usage: `s-message <channel-name> <message>`');
         }
+        message.delete(100);
     }
 }
 

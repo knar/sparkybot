@@ -49,8 +49,6 @@ client.on("message", message => {
     if (message.author.bot) return;
     if (message.content.indexOf(config.prefix) !== 0) return;
 
-    message.delete(100);
-
     if (['help', 'listcommands', 'commands'].includes(command)) {
         customCommands.listCommands(COMMAND_LIST, message, command, args);
     }
