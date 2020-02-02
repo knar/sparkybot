@@ -1,3 +1,12 @@
-function getChannelFromName(name, message) {
-    return message.guild.channels.find(channel => channel.name === channelName);
+/**
+ * @param {*} discordId 
+ */
+function userStringFromMessage(message) {
+    return '<@' + message.author.id + '>';
 }
+
+function userStringFromId(id) {
+    return '<@' + id + '>';
+}
+
+module.exports = { userStringFromMessage, userStringFromId }

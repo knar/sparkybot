@@ -6,6 +6,7 @@ const sensConvert = require('./src/commands/sensConvert');
 const textCommands = require('./src/commands/text');
 const sendMessageAsBot = require('./src/commands/sendMessage');
 const customCommands = require('./src/commands/customCommand');
+const submitCommands = require('./src/commands/score/submit');
 const _ = require('lodash');
 
 const SPARKY_VARIANTS = [
@@ -73,6 +74,7 @@ client.on("message", message => {
         textCommands.checkTextCommands(message, command, args);
         sensConvert.checkSensConvertCommands(message, command, args);
         customCommands.customCommands(message, command, args);
+        submitCommands.checkSendMessageToChannel(message, command, args);
     } catch(error) {
         console.log(error);
     }
