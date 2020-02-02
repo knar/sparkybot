@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-    return knex.schema.createTable('roles', tbl => {
+    return knex.schema.createTable('userRoles', tbl => {
         tbl
             .integer('discordId')
             .notNullable();
@@ -12,11 +12,13 @@ exports.up = function(knex) {
         tbl
             .foreign('discordId')
             .references('users.discordId');
-  
+
+        tbl
+            .foreign('roleName')
+            .references('roles.roleName');
     })
-  };
-  
-  exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('roles');
-  };
-  
+};
+
+exports.down = function(knex) {
+    return knex.schema.dropTableIfExists('userRoles');
+};

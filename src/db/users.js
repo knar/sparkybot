@@ -2,20 +2,20 @@ const knex = require('knex');
 const config = require('../../knexfile.js');
 
 const db = knex(config.development);
-const USERS_DB_NAME = 'users'
-const USERS_DB_ID = 'discordId';
+const TABLE_NAME = 'users'
+const TABLE_ID = 'discordId';
 
-function getAllUsers() {
-    return db(USERS_DB_NAME);
+function getAll() {
+    return db(TABLE_NAME);
 }
 
-function getByDiscordId(id) {
-    return db(USERS_DB_NAME)
+function getById(id) {
+    return db(TABLE_NAME)
         .where( { id: Number(id) });
 }
 
 function insert(discordId, username) {
-    return db(USERS_DB_NAME)
+    return db(TABLE_NAME)
         .insert({
             discordId: discordId,
             username: username
@@ -25,20 +25,20 @@ function insert(discordId, username) {
 }
 
 function update(discordId, username) {
-    return db(USERS_DB_NAME)
-        .where(USERS_DB_ID, Number(discordId))
+    return db(TABLE_NAME)
+        .where(TABLE_ID, Number(discordId))
         .update(username);
 }
 
 function remove(discordId) {
-    return db(USERS_DB_NAME)
-        .where(USERS_DB_ID, Number(discordId))
+    return db(TABLE_NAME)
+        .where(TABLE_ID, Number(discordId))
         .del();
 }
 
 module.exports = { 
-    getAllUsers,
-    getByDiscordId,
+    getAll,
+    getById,
     insert,
     update,
     remove

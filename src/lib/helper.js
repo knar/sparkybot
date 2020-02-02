@@ -9,4 +9,17 @@ function userStringFromId(id) {
     return '<@' + id + '>';
 }
 
-module.exports = { userStringFromMessage, userStringFromId }
+function userIdFromString(string) {
+    return string.match('<@(.*)>')[1]
+}
+
+function memberById(message, id) {
+    return message.guild.members.get(id);
+}
+
+module.exports = {
+    userStringFromMessage,
+    userStringFromId,
+    userIdFromString,
+    memberById
+}

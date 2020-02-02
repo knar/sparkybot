@@ -7,6 +7,7 @@ const textCommands = require('./src/commands/text');
 const sendMessageAsBot = require('./src/commands/sendMessage');
 const customCommands = require('./src/commands/customCommand');
 const submitCommands = require('./src/commands/score/submit');
+const scoreCommands = require('./src/commands/score/scoreCommands')
 const _ = require('lodash');
 
 const SPARKY_VARIANTS = [
@@ -74,7 +75,7 @@ client.on("message", message => {
         textCommands.checkTextCommands(message, command, args);
         sensConvert.checkSensConvertCommands(message, command, args);
         customCommands.customCommands(message, command, args);
-        submitCommands.checkSendMessageToChannel(message, command, args);
+        submitCommands.submitScores(message, command, args);
     } catch(error) {
         console.log(error);
     }
@@ -91,6 +92,7 @@ client.on("message", message => {
         customCommands.createCommand(message,command, args);
         customCommands.deleteCommand(message,command, args);
         sendMessageAsBot.checkSendMessageToChannel(message, command, args);
+        scoreCommands.checkCommands(message,command, args);
     } catch(error) {
         console.log(error);
     }
