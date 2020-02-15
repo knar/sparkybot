@@ -3,6 +3,7 @@
  */
 
 const toFixed = require('tofixed');
+const helper = require('../lib/helper');
 
 const yawMap = {
     "cs":           0.022,
@@ -159,11 +160,13 @@ function checkSensConvertCommands(message, command, args) {
     }
 
     if (send_msg && out.length > 0) {
+        helper.checkAndWarnIfNotCommands(message);
         // trim trailing comma and whitespace
         out = out.replace(/,\s*$/g, '');
         // construct reply mentioning the user
-        let reply = "<@" + message.author.id + ">" + ": " + out;
-        let chan = message.channel;
+        let reply = helper.userStringFromMessage(message) + ": " + out;
+        console.log(message)
+        let chan = helper.channelFromName(message, 'commands');
     
         chan.send(reply);
     }

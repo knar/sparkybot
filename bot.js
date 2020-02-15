@@ -40,7 +40,7 @@ const COMMAND_ARRAY = [
 const COMMAND_LIST = _.flatten([COMMAND_ARRAY]);
  
 client.on("ready", () => {
-  console.log("I am ready!");
+  console.log("bot started");
 });
  
 client.on("message", message => {
