@@ -8,6 +8,7 @@ const sendMessageAsBot = require('./src/commands/sendMessage');
 const customCommands = require('./src/commands/customCommand');
 const submitCommands = require('./src/commands/score/submit');
 const scoreCommands = require('./src/commands/score/scoreCommands')
+const clown = require('./src/commands/clown');
 const _ = require('lodash');
 
 const SPARKY_VARIANTS = [
@@ -76,6 +77,7 @@ client.on("message", message => {
         sensConvert.checkSensConvertCommands(message, command, args);
         customCommands.customCommands(message, command, args);
         submitCommands.submitScores(message, command, args);
+        clown.checkClown(message, command, args);
     } catch(error) {
         console.log(error);
     }
@@ -126,5 +128,11 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         console.log(error);
     }
 });
+
+var CronJob = require('cron').CronJob;
+var job = new CronJob('* * * * * *', function() {
+  //console.log('You will see this message every second');
+}, null, true, 'America/Los_Angeles');
+// job.start();
  
 client.login(config.token);

@@ -5,6 +5,7 @@
   "main": "bot.js",
   "dependencies": {
     "app-root-path": "^2.2.1",
+    "cron": "^1.8.2",
     "discord.js": "^11.5.1",
     "knex": "^0.20.8",
     "lodash": "^4.17.15",
