@@ -12,6 +12,16 @@ exports.up = function(knex) {
         tbl
             .boolean('hidden')
             .defaultTo(false)
+        tbl
+            .enu(
+                'type',
+                [
+                    'click',
+                    'track',
+                    'switch',
+                    'move'
+                ]
+            )
       });
 };
 

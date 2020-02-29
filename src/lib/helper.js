@@ -23,8 +23,12 @@ function channelFromName(message, channelName) {
 
 function checkAndWarnIfNotCommands(message) {
     if (message.channel.name !== 'commands') {
-        message.channel.send(`${userStringFromMessage(message)}, please use this command in ${channelFromName(message, 'commands')}, I have sent it there for you`);
+        useCommandInCommandsChannel(message);
     }
+}
+
+function useCommandInCommandsChannel(message) {
+    message.channel.send(`${userStringFromMessage(message)}, please use this command in ${channelFromName(message, 'commands')}, I have sent it there for you`);
 }
 
 module.exports = {
@@ -33,5 +37,6 @@ module.exports = {
     userIdFromString,
     memberById,
     checkAndWarnIfNotCommands,
-    channelFromName
+    channelFromName,
+    useCommandInCommandsChannel
 }

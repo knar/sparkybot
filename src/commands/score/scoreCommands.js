@@ -2,16 +2,21 @@ const dbScenarios = require('../../db/scenarios')
 const helper = require('../../lib/helper')
 
 function checkCommands(message, command, args) {
-    if (command === 'addscenario') {
-        addScenario(message, args);
-    }
-
-    if (command === 'hidescenario') {
-        hideScenario(message, args);
-    } 
-
-    if (command === 'listscenarios') {
-        listScenarios(message);
+    return;
+    if (command === 'scenarios') {
+        const subCommand = args[0];
+        const passedArgs = args.splice(1)
+        if (subCommand === 'add') {
+            addScenario(message, passedArgs);
+        }
+    
+        if (subCommand === 'hide') {
+            hideScenario(message, passedArgs);
+        } 
+    
+        if (subCommand === 'list') {
+            listScenarios(message);
+        }
     }
 }
 
@@ -27,7 +32,7 @@ async function addScenario(message, args) {
     const scenarioId = await dbScenarios.insert(args[0]);
     message.channel.send(
         helper.userStringFromMessage(message) + 
-        ' created command: ' + args[0] +
+        ' created scenario: ' + args[0] +
         ' with id of: `' + scenarioId + '`');
 }
 

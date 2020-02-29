@@ -9,9 +9,9 @@ function getAll() {
     return db(TABLE_NAME);
 }
 
-function getById(id) {
+function getByDiscordId(id) {
     return db(TABLE_NAME)
-        .where( { id: Number(id) });
+        .where( { discordId: Number(id) });
 }
 
 function insert(discordId, username) {
@@ -38,7 +38,7 @@ function remove(discordId) {
 
 module.exports = { 
     getAll,
-    getById,
+    getByDiscordId,
     insert,
     update,
     remove

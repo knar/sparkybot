@@ -3,6 +3,7 @@ const appRoot = require('app-root-path');
 const nodemailer = require('nodemailer');
 const config = require("../../config.json");
 const Discord = require("discord.js");
+const helper = require('../lib/helper');
 
 const COMMAND_NAME = 0;
 const CUSTOM_COMMANDS_FILE_PATH = appRoot + '/storage/customCommands.json';
@@ -97,7 +98,7 @@ function deleteCommand(message,command, args) {
 function listCommands(preCreatedCommandArray, message, command, args) {
     if (['help', 'listcommands', 'commands'].includes(command)) {
         if (message.channel.name !== 'commands') {
-            message.channel.send("<@" + message.author.id + ">, please use this command in #commands, I have sent it there for you");
+            helper.useCommandInCommandsChannel(message);
         }
         try {
             if (fs.existsSync(CUSTOM_COMMANDS_FILE_PATH)) {
