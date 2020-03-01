@@ -32,6 +32,12 @@ async function checkTimeout(message, command, args) {
             eventChannel.send(reasonString);
         }
     }
+
+    if (command === 'untimeout') {
+        if (null !== helper.getHighestAdminHelperRole(message)) {
+            helper.removeTimeoutForMemberId(message.guild, helper.userIdFromString(args[0]), helper.userStringFromId(message.author.id));
+        }
+    }
 }
 
 module.exports = { checkTimeout };

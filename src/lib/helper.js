@@ -1,4 +1,6 @@
 const config = require('../../config.json')
+const timeoutDb = require('../db/timeout');
+
 /**
  * @param {*} discordId 
  */
@@ -62,6 +64,23 @@ function getLinkToMessage(message) {
     return `https://discordapp.com/channels/${serverId}/${channelId}/${messageId}`;
 }
 
+function removeTimeoutForMemberId(guild, memberId, remover) {
+    let member = memberById(guild, memberId);
+    if (!member) {
+        const eventChannel = channelFromName(guild, 'log-events');
+        eventChannel.send(`${remover} tried to remove ${userStringFromId(memberId)} from timeout role, but they left discord, or can't be found`);
+        timeoutDb.process(memberId);
+        return;
+    }
+    let role = roleFromName(guild, 'timeout')
+    let removeMessage = `timeout role removed from ${userStringFromId(memberId)} by ${remover}`
+    member.removeRole(role, removeMessage)
+    timeoutDb.process(memberId);
+
+    const eventChannel = channelFromName(guild, 'log-events');
+    eventChannel.send(removeMessage);
+}
+
 module.exports = {
     userStringFromMessage,
     userStringFromId,
@@ -73,4 +92,5 @@ module.exports = {
     roleFromName,
     channelFromName,
     getLinkToMessage,
+    removeTimeoutForMemberId
 }
