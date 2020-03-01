@@ -142,6 +142,12 @@ var job = new CronJob('* * * * * *', async function() {
   const rowsToBeProcessed = await timeoutDb.getAllForProcessing();
   for (const row of rowsToBeProcessed) {
       let member = helper.memberById(guild, row.discordId);
+      if (!member) {
+        const eventChannel = helper.channelFromName(guild, 'log-events');
+        eventChannel.send(`tried to remove ${helper.userStringFromId(row.discordId)} from timeout role, but they left discord`);
+        timeoutDb.process(row.discordId);
+        continue;
+      }
       let role = helper.roleFromName(guild, 'timeout')
       let removeMessage = `timeout role removed from ${helper.userStringFromId(member.id)}`
       member.removeRole(role, removeMessage)
