@@ -5,7 +5,7 @@ exports.up = function(knex) {
             .increments('submissionId')
       
         tbl
-            .integer('discordId')
+            .string('discordId')
             .notNullable();
 
         tbl

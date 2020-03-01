@@ -2,7 +2,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('scores', tbl => {
         tbl
-            .integer('discordId')
+            .string('discordId')
             .unique()
             .notNullable();
 

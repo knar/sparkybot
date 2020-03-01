@@ -9,6 +9,8 @@ const customCommands = require('./src/commands/customCommand');
 const submitCommands = require('./src/commands/score/submit');
 const scoreCommands = require('./src/commands/score/scoreCommands')
 const clown = require('./src/commands/clown');
+const clownDb = require('./src/db/clown');
+const helper = require('./src/lib/helper');
 const _ = require('lodash');
 
 const SPARKY_VARIANTS = [
@@ -128,11 +130,25 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         console.log(error);
     }
 });
-
-var CronJob = require('cron').CronJob;
-var job = new CronJob('* * * * * *', function() {
-  //console.log('You will see this message every second');
-}, null, true, 'America/Los_Angeles');
-// job.start();
  
 client.login(config.token);
+
+/** crons - TODO refactor this to another file */
+const CronJob = require('cron').CronJob;
+
+var job = new CronJob('* * * * * *', async function() {
+  const guild = client.guilds.find(guild => guild.id === config.guild_id)
+  const rowsToBeProcessed = await clownDb.getAllForProcessing();
+  for (const row of rowsToBeProcessed) {
+      let member = helper.memberById(guild, row.discordId);
+      let role = helper.roleFromName(guild, 'clown')
+      let removeMessage = `clown role removed from ${helper.userStringFromId(member.id)}`
+      member.removeRole(role, removeMessage)
+      clownDb.process(member.id);
+
+      const eventChannel = helper.channelFromName(guild, 'log-events');
+      eventChannel.send(removeMessage);
+  }
+
+}, null, true, 'America/Los_Angeles');
+job.start();

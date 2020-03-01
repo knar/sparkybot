@@ -1,3 +1,4 @@
+const config = require('../../config.json')
 /**
  * @param {*} discordId 
  */
@@ -13,8 +14,8 @@ function userIdFromString(string) {
     return string.match('<@[!]?(.*)>')[1]
 }
 
-function memberById(message, id) {
-    return message.guild.members.get(id);
+function memberById(guild, id) {
+    return guild.members.get(id);
 }
 
 function checkAndWarnIfNotCommands(message) {
@@ -37,16 +38,16 @@ function getHighestAdminHelperRole(message) {
     });
 }
 
-function roleFromName(message, roleName) {
-    return message.guild.roles.find(role => {
+function roleFromName(guild, roleName) {
+    return guild.roles.find(role => {
         if (role.name.toLowerCase().includes(roleName)) {
             return true;
         }
     });
 }
 
-function channelFromName(message, channelName) {
-    return message.guild.channels.find(channel => {
+function channelFromName(guild, channelName) {
+    return guild.channels.find(channel => {
         if (channel.name.toLowerCase().includes(channelName)) {
             return true;
         }
@@ -71,5 +72,5 @@ module.exports = {
     getHighestAdminHelperRole,
     roleFromName,
     channelFromName,
-    getLinkToMessage
+    getLinkToMessage,
 }

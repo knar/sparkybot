@@ -165,7 +165,7 @@ function checkSensConvertCommands(message, command, args) {
         out = out.replace(/,\s*$/g, '');
         // construct reply mentioning the user
         let reply = helper.userStringFromMessage(message) + ": " + out;
-        let chan = helper.channelFromName(message, 'commands');
+        let chan = helper.channelFromName(message.guild, 'commands');
     
         chan.send(reply);
     }

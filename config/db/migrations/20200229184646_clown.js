@@ -3,25 +3,22 @@ exports.up = function(knex) {
     return knex.schema.createTable('clown', tbl => {
         tbl
             .increments('clownId')
-        
         tbl
-            .text('scenarioName')
-            .unique()
+            .string('discordId')
             .notNullable();
-
         tbl
-            .boolean('hidden')
-            .defaultTo(false)
+            .timestamp('start')
+            .defaultTo(knex.fn.now())
+            .notNullable();
         tbl
-            .enu(
-                'type',
-                [
-                    'click',
-                    'track',
-                    'switch',
-                    'move'
-                ]
-            )
+            .timestamp('end')
+            .notNullable();
+        tbl
+            .boolean('ended')
+            .defaultTo(false);
+        tbl
+            .foreign('discordId')
+            .references('users.discordId');
       });
 };
 
