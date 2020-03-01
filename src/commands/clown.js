@@ -1,10 +1,16 @@
 const helper = require('../lib/helper');
 const clownDb = require('../db/clown');
 
+const usage = [
+    'usage:',
+    's-clown <@user> <time-in-minutes>',
+].join('\n')
+
 async function checkClown(message, command, args) {
     if (command === 'clown') {
         if (null !== helper.getHighestAdminHelperRole(message)) {
             if (args.length !== 2) {
+                message.channel.send(usage);
                 return;
             }
 
