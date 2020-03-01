@@ -64,11 +64,10 @@ function getLinkToMessage(message) {
     return `https://discordapp.com/channels/${serverId}/${channelId}/${messageId}`;
 }
 
-function removeTimeoutForMemberId(guild, memberId, remover) {
+function removeTimeoutForMemberId(guild, memberId, remover, channel) {
     let member = memberById(guild, memberId);
     if (!member) {
-        const eventChannel = channelFromName(guild, 'log-events');
-        eventChannel.send(`${remover} tried to remove ${userStringFromId(memberId)} from timeout role, but they left discord, or can't be found`);
+        channel.send(`${remover} tried to remove ${userStringFromId(memberId)} from timeout role, but they left discord, or can't be found`);
         timeoutDb.process(memberId);
         return;
     }
@@ -77,8 +76,7 @@ function removeTimeoutForMemberId(guild, memberId, remover) {
     member.removeRole(role, removeMessage)
     timeoutDb.process(memberId);
 
-    const eventChannel = channelFromName(guild, 'log-events');
-    eventChannel.send(removeMessage);
+    channel.send(removeMessage);
 }
 
 module.exports = {

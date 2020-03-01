@@ -131,7 +131,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         console.log(error);
     }
 });
- 
 client.login(config.token);
 
 /** crons - TODO refactor this to another file */
@@ -139,9 +138,15 @@ const CronJob = require('cron').CronJob;
 
 var job = new CronJob('* * * * * *', async function() {
   const guild = client.guilds.find(guild => guild.id === config.guild_id)
+  const eventChannel = helper.channelFromName(guild, 'log-events');
   const rowsToBeProcessed = await timeoutDb.getAllForProcessing();
   for (const row of rowsToBeProcessed) {
-    helper.removeTimeoutForMemberId(guild, row['discordId'], 'sparkybot')
+    helper.removeTimeoutForMemberId(
+        guild,
+        row['discordId'],
+        'sparkybot',
+        eventChannel
+    )
   }
 
 }, null, true, 'America/Los_Angeles');

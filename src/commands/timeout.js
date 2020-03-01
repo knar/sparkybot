@@ -23,19 +23,24 @@ async function checkTimeout(message, command, args) {
             const timeoutRole = helper.roleFromName(message.guild, 'timeout');
 
             await timeoutDb.insert(targetMemberId, args[1]);
+            const reasonNoLink = `timeout role given to ${targetMember} by ${helper.userStringFromId(message.author.id)}`;
             const reasonString = [
-                `timeout role given to ${targetMember} by ${helper.userStringFromId(message.author.id)}`,
+                reasonNoLink,
                 `messagelink: ${helper.getLinkToMessage(message)}`
             ].join('\n');
             targetMember.addRole(timeoutRole, reasonString);
-            const eventChannel = helper.channelFromName(message.guild, 'log-events');
-            eventChannel.send(reasonString);
+            message.channel.send(reasonNoLink);
         }
     }
 
     if (command === 'untimeout') {
         if (null !== helper.getHighestAdminHelperRole(message)) {
-            helper.removeTimeoutForMemberId(message.guild, helper.userIdFromString(args[0]), helper.userStringFromId(message.author.id));
+            helper.removeTimeoutForMemberId(
+                message.guild,
+                helper.userIdFromString(args[0]),
+                helper.userStringFromId(message.author.id),
+                message.channel
+            );
         }
     }
 }
