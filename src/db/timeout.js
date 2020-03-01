@@ -3,8 +3,8 @@ const config = require('../../knexfile.js');
 const moment = require('moment');
 
 const db = knex(config.development);
-const TABLE_NAME = 'clown'
-const TABLE_ID = 'clownId';
+const TABLE_NAME = 'timeout'
+const TABLE_ID = 'timeoutId';
 
 async function getAllUnprocessed() {
     return db(TABLE_NAME)
@@ -35,7 +35,7 @@ async function insert(discordUserId, minutes) {
             discordId: discordUserId,
             end: dateTime.format()
         }).catch((err) => {
-            console.log('error inserting clown');
+            console.log('error inserting timeout');
         })
 }
 

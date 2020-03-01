@@ -8,8 +8,8 @@ const sendMessageAsBot = require('./src/commands/sendMessage');
 const customCommands = require('./src/commands/customCommand');
 const submitCommands = require('./src/commands/score/submit');
 const scoreCommands = require('./src/commands/score/scoreCommands')
-const clown = require('./src/commands/clown');
-const clownDb = require('./src/db/clown');
+const timeout = require('./src/commands/timeout');
+const timeoutDb = require('./src/db/timeout');
 const helper = require('./src/lib/helper');
 const _ = require('lodash');
 
@@ -79,7 +79,7 @@ client.on("message", message => {
         sensConvert.checkSensConvertCommands(message, command, args);
         customCommands.customCommands(message, command, args);
         submitCommands.submitScores(message, command, args);
-        clown.checkClown(message, command, args);
+        timeout.checkTimeout(message, command, args);
     } catch(error) {
         console.log(error);
     }
@@ -108,7 +108,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     try {
         let newUserChannel = newMember.voiceChannel
         let oldUserChannel = oldMember.voiceChannel
-        const auditChannel = client.channels.get('632982155835867168');
+        const guild = client.guilds.find(guild => guild.id === config.guild_id)
+        const auditChannel = helper.channelFromName(guild, 'log-voice');
 
         let embed = new Discord.RichEmbed()
             .setTimestamp();
@@ -138,13 +139,13 @@ const CronJob = require('cron').CronJob;
 
 var job = new CronJob('* * * * * *', async function() {
   const guild = client.guilds.find(guild => guild.id === config.guild_id)
-  const rowsToBeProcessed = await clownDb.getAllForProcessing();
+  const rowsToBeProcessed = await timeoutDb.getAllForProcessing();
   for (const row of rowsToBeProcessed) {
       let member = helper.memberById(guild, row.discordId);
-      let role = helper.roleFromName(guild, 'clown')
-      let removeMessage = `clown role removed from ${helper.userStringFromId(member.id)}`
+      let role = helper.roleFromName(guild, 'timeout')
+      let removeMessage = `timeout role removed from ${helper.userStringFromId(member.id)}`
       member.removeRole(role, removeMessage)
-      clownDb.process(member.id);
+      timeoutDb.process(member.id);
 
       const eventChannel = helper.channelFromName(guild, 'log-events');
       eventChannel.send(removeMessage);

@@ -1,13 +1,13 @@
 const helper = require('../lib/helper');
-const clownDb = require('../db/clown');
+const timeoutDb = require('../db/timeout');
 
 const usage = [
     'usage:',
-    's-clown <@user> <time-in-minutes>',
+    's-timeout <@user> <time-in-minutes>',
 ].join('\n')
 
-async function checkClown(message, command, args) {
-    if (command === 'clown') {
+async function checkTimeout(message, command, args) {
+    if (command === 'timeout') {
         if (null !== helper.getHighestAdminHelperRole(message)) {
             if (args.length !== 2) {
                 message.channel.send(usage);
@@ -20,18 +20,18 @@ async function checkClown(message, command, args) {
             }
 
             const targetMember = helper.memberById(message.guild, targetMemberId);
-            const clownRole = helper.roleFromName(message.guild, 'clown');
+            const timeoutRole = helper.roleFromName(message.guild, 'timeout');
 
-            await clownDb.insert(targetMemberId, args[1]);
+            await timeoutDb.insert(targetMemberId, args[1]);
             const reasonString = [
-                `clown role given to ${targetMember} by ${helper.userStringFromId(message.author.id)}`,
+                `timeout role given to ${targetMember} by ${helper.userStringFromId(message.author.id)}`,
                 `messagelink: ${helper.getLinkToMessage(message)}`
             ].join('\n');
-            targetMember.addRole(clownRole, reasonString);
+            targetMember.addRole(timeoutRole, reasonString);
             const eventChannel = helper.channelFromName(message.guild, 'log-events');
             eventChannel.send(reasonString);
         }
     }
 }
 
-module.exports = { checkClown };
+module.exports = { checkTimeout };

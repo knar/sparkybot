@@ -2,7 +2,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('clown', tbl => {
         tbl
-            .increments('clownId')
+            .increments('timeoutId')
         tbl
             .string('discordId')
             .notNullable();
