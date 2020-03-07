@@ -142,7 +142,6 @@ client.login(config.token);
 const CronJob = require('cron').CronJob;
 
 var job = new CronJob('5 * * * * *', async function() {
-  console.log("hi");
   const guild = client.guilds.find(guild => guild.id === config.guild_id)
   const eventChannel = helper.channelFromName(guild, 'log-events');
   const rowsToBeProcessed = await timeoutDb.getAllForProcessing();
