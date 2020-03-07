@@ -97,6 +97,7 @@ async function timeoutMember(message, command, args) {
     }
     if (helper.isMod(message.guild, targetMemberId)) {
         message.channel.send('cant timeout a owner/mod :angerykirby:');
+        return
     }
 
     const targetMember = helper.memberById(message.guild, targetMemberId);
