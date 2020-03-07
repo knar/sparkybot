@@ -40,6 +40,27 @@ function getHighestAdminHelperRole(message) {
     });
 }
 
+function isMod(guild, discordId) {
+    const member = memberById(guild, discordId);
+    if (!member) {
+        return false;
+    }
+
+    const modRole = member.roles.find(role => {
+        for (const adminHelper of ['owner', 'moderator']) {
+            if (role.name.toLowerCase().includes(adminHelper)) {
+                return true;
+            }
+        }
+    });
+
+    if (modRole) {
+        return true;
+    }
+
+    return false;
+}
+
 function roleFromName(guild, roleName) {
     return guild.roles.find(role => {
         if (role.name.toLowerCase().includes(roleName)) {
@@ -90,5 +111,6 @@ module.exports = {
     roleFromName,
     channelFromName,
     getLinkToMessage,
-    removeTimeoutForMemberId
+    removeTimeoutForMemberId,
+    isMod
 }

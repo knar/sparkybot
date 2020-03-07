@@ -23,7 +23,10 @@ async function getAllForProcessing() {
 
 async function getById(id) {
     return db(TABLE_NAME)
-        .where( { TABLE_ID: String(id) });
+        .where({
+            discordId: String(id),
+            ended: false
+        });
 }
 
 async function insert(discordUserId, minutes) {

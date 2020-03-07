@@ -47,57 +47,60 @@ client.on("ready", () => {
 });
  
 client.on("message", message => {
-
-    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-    const command = args.shift().toLowerCase();
-
-    if (message.author.bot) return;
-    if (message.content.indexOf(config.prefix) !== 0) return;
-
-    if (['help', 'listcommands', 'commands'].includes(command)) {
-        customCommands.listCommands(COMMAND_LIST, message, command, args);
-    }
-
-    if (UPGRADE_VARIANTS.includes(command)) {
-        embedCommands.sendUpgradeEmbed(message);
-    }
-    
-    if (SPARKY_VARIANTS.includes(command)) {
-        embedCommands.sendSparkyAimEmbed(message);
-    }
-
-    if (command === 'mana') {
-        message.channel.send('mana manages to manifest itself in shooters as an unknown entity... he is not a resource that can be used - he is the *user*');
-    }
-    
-    if (SUPPORT_VARIANTS.includes(command)) {
-        embedCommands.sendSupportSparkyEmbed(message);
-    }
-
     try {
-        textCommands.checkTextCommands(message, command, args);
-        sensConvert.checkSensConvertCommands(message, command, args);
-        customCommands.customCommands(message, command, args);
-        submitCommands.submitScores(message, command, args);
-        timeout.checkTimeout(message, command, args);
-    } catch(error) {
-        console.log(error);
-    }
+        const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+        const command = args.shift().toLowerCase();
 
-    if (!config.admin_ids.includes(message.author.id)) {
-        return;
-    }
+        if (message.author.bot) return;
+        if (message.content.indexOf(config.prefix) !== 0) return;
 
-    if (command === 'welcome') {
-        embedCommands.sendWelcomeToChannel(message);
-    }
+        if (['help', 'listcommands', 'commands'].includes(command)) {
+            customCommands.listCommands(COMMAND_LIST, message, command, args);
+        }
 
-    try {
-        customCommands.createCommand(message,command, args);
-        customCommands.deleteCommand(message,command, args);
-        sendMessageAsBot.checkSendMessageToChannel(message, command, args);
-        scoreCommands.checkCommands(message,command, args);
-    } catch(error) {
+        if (UPGRADE_VARIANTS.includes(command)) {
+            embedCommands.sendUpgradeEmbed(message);
+        }
+        
+        if (SPARKY_VARIANTS.includes(command)) {
+            embedCommands.sendSparkyAimEmbed(message);
+        }
+
+        if (command === 'mana') {
+            message.channel.send('mana manages to manifest itself in shooters as an unknown entity... he is not a resource that can be used - he is the *user*');
+        }
+        
+        if (SUPPORT_VARIANTS.includes(command)) {
+            embedCommands.sendSupportSparkyEmbed(message);
+        }
+
+        try {
+            textCommands.checkTextCommands(message, command, args);
+            sensConvert.checkSensConvertCommands(message, command, args);
+            customCommands.customCommands(message, command, args);
+            submitCommands.submitScores(message, command, args);
+            timeout.checkTimeout(message, command, args);
+        } catch(error) {
+            console.log(error);
+        }
+
+        if (!config.admin_ids.includes(message.author.id)) {
+            return;
+        }
+
+        if (command === 'welcome') {
+            embedCommands.sendWelcomeToChannel(message);
+        }
+
+        try {
+            customCommands.createCommand(message,command, args);
+            customCommands.deleteCommand(message,command, args);
+            sendMessageAsBot.checkSendMessageToChannel(message, command, args);
+            scoreCommands.checkCommands(message,command, args);
+        } catch(error) {
+            console.log(error);
+        }
+    } catch (error) {
         console.log(error);
     }
 });
@@ -136,7 +139,8 @@ client.login(config.token);
 /** crons - TODO refactor this to another file */
 const CronJob = require('cron').CronJob;
 
-var job = new CronJob('* * * * * *', async function() {
+var job = new CronJob('5 * * * * *', async function() {
+  console.log("hi");
   const guild = client.guilds.find(guild => guild.id === config.guild_id)
   const eventChannel = helper.channelFromName(guild, 'log-events');
   const rowsToBeProcessed = await timeoutDb.getAllForProcessing();
