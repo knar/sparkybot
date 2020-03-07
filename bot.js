@@ -11,6 +11,7 @@ const scoreCommands = require('./src/commands/score/scoreCommands')
 const timeout = require('./src/commands/timeout');
 const timeoutDb = require('./src/db/timeout');
 const helper = require('./src/lib/helper');
+const coin = require('./src/commands/coin');
 const _ = require('lodash');
 
 const SPARKY_VARIANTS = [
@@ -80,6 +81,7 @@ client.on("message", message => {
             customCommands.customCommands(message, command, args);
             submitCommands.submitScores(message, command, args);
             timeout.checkTimeout(message, command, args);
+            coin.checkCoinCommand(message, command, args);
         } catch(error) {
             console.log(error);
         }
