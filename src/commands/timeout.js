@@ -5,9 +5,9 @@ const timeoutDb = require('../db/timeout');
 const usageTimeoutMods = [
     'usage:',
     's-timeout <@user> <duration-in-minutes> # timeout a member',
-    's-timeout <@user>                       # check how long a member is timed out for',
-    's-untimeout <@user>                     # un timeout a member',
-    's-timeoutlist                           # list all members timed out',
+    's-timeout <@user>                                            # check how long a member is timed out for',
+    's-untimeout <@user>                                       # un timeout a member',
+    's-timeoutlist                                                        # list all members timed out',
 
 ].join('\n')
 
