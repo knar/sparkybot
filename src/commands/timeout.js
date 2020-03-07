@@ -96,7 +96,11 @@ async function timeoutMember(message, command, args) {
         return
     }
     if (helper.isMod(message.guild, targetMemberId)) {
-        message.channel.send('cant timeout a owner/mod :angerykirby:');
+        let emoji = helper.getEmojiByName(message.guild, 'angerykirby');
+        if (!emoji) {
+            emoji = '';
+        }
+        message.channel.send(`cant timeout a owner/mod ${emoji}`);
         return
     }
 

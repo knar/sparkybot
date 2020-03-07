@@ -100,6 +100,10 @@ function removeTimeoutForMemberId(guild, memberId, remover, channel) {
     channel.send(removeMessage);
 }
 
+function getEmojiByName(guild, name) {
+    return guild.emojis.find(emoji => emoji.name === name);
+}
+
 module.exports = {
     userStringFromMessage,
     userStringFromId,
@@ -112,5 +116,6 @@ module.exports = {
     channelFromName,
     getLinkToMessage,
     removeTimeoutForMemberId,
-    isMod
+    isMod,
+    getEmojiByName
 }
