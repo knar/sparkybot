@@ -32,7 +32,7 @@ function useCommandInCommandsChannel(message) {
 
 function getHighestAdminHelperRole(message) {
     return message.member.roles.find(role => {
-        for (const adminHelper of ['owner', 'moderator', 'helper']) {
+        for (const adminHelper of ['owner', 'staff', 'helper']) {
             if (role.name.toLowerCase().includes(adminHelper)) {
                 return true;
             }
@@ -47,7 +47,7 @@ function isMod(guild, discordId) {
     }
 
     const modRole = member.roles.find(role => {
-        for (const adminHelper of ['owner', 'moderator']) {
+        for (const adminHelper of ['owner', 'staff']) {
             if (role.name.toLowerCase().includes(adminHelper)) {
                 return true;
             }
