@@ -27,7 +27,7 @@ function checkAndWarnIfNotCommands(message) {
 }
 
 function useCommandInCommandsChannel(message) {
-    message.channel.send(`${userStringFromMessage(message)}, please use this command in ${channelFromName(message, 'commands')}, I have sent it there for you`);
+    message.channel.send(`${userStringFromMessage(message)}, please use this command in ${channelFromName(message.guild, 'commands')}, I have sent it there for you`);
 }
 
 function getHighestAdminHelperRole(message) {

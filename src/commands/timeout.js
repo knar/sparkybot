@@ -100,7 +100,7 @@ async function timeoutMember(message, command, args) {
         if (!emoji) {
             emoji = '';
         }
-        message.channel.send(`cant timeout a owner/mod ${emoji}`);
+        message.channel.send(`cant timeout a owner/staff ${emoji}`);
         return
     }
 
