@@ -104,6 +104,12 @@ function getEmojiByName(guild, name) {
     return guild.emojis.find(emoji => emoji.name === name);
 }
 
+function updateMemberCount(guild, newMemberCount) {
+    let channel = guild.channels.find(channel => channel.id === config.member_count_channel_id);
+    let newChannelName = `User Count: ${newMemberCount}`;
+    channel.setName(newChannelName);
+}
+
 module.exports = {
     userStringFromMessage,
     userStringFromId,
@@ -117,5 +123,6 @@ module.exports = {
     getLinkToMessage,
     removeTimeoutForMemberId,
     isMod,
-    getEmojiByName
+    getEmojiByName,
+    updateMemberCount
 }

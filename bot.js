@@ -46,6 +46,28 @@ const COMMAND_LIST = _.flatten([COMMAND_ARRAY]);
 client.on("ready", () => {
   console.log("bot started");
 });
+
+client.on('guildMemberAdd', member => {
+    try {
+        let guild = client.guilds.find(guild => guild.id === config.guild_id);
+        let memberCount = guild.memberCount;
+        let botCount = helper.roleFromName(guild, 'bots').members.array().length;
+        helper.updateMemberCount(guild, memberCount - botCount);
+    } catch (e) {
+        console.log(e);
+    }
+});
+
+client.on('guildMemberRemove', member => {
+    try {
+        let guild = client.guilds.find(guild => guild.id === config.guild_id);
+        let memberCount = guild.memberCount;
+        let botCount = helper.roleFromName(guild, 'bots').members.array().length;
+        helper.updateMemberCount(guild, memberCount - botCount);
+    } catch (e) {
+        console.log(e);
+    }
+});
  
 client.on("message", message => {
     try {
