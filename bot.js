@@ -14,14 +14,6 @@ const helper = require('./src/lib/helper');
 const coin = require('./src/commands/coin');
 const _ = require('lodash');
 
-const SPARKY_VARIANTS = [
-    'sparkyaimers',
-    'sparkyaim',
-    'sparky',
-    'aim',
-    'aimers'
-];
-
 const UPGRADE_VARIANTS = [
     'upgrade',
     'benchmark',
@@ -38,7 +30,6 @@ const SUPPORT_VARIANTS = [
 const COMMAND_ARRAY = [
     SUPPORT_VARIANTS,
     UPGRADE_VARIANTS,
-    SPARKY_VARIANTS,
 ]
 
 const COMMAND_LIST = _.flatten([COMMAND_ARRAY]);
@@ -83,10 +74,6 @@ client.on("message", message => {
 
         if (UPGRADE_VARIANTS.includes(command)) {
             embedCommands.sendUpgradeEmbed(message);
-        }
-        
-        if (SPARKY_VARIANTS.includes(command)) {
-            embedCommands.sendSparkyAimEmbed(message);
         }
 
         if (command === 'mana') {

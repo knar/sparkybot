@@ -90,19 +90,6 @@ function sendUpgradeEmbed(message) {
     message.channel.send(upgrade);
 }
 
-function sendSparkyAimEmbed(message) {
-    let sparkyAim = new Discord.RichEmbed()
-            .setTitle("Sparky Aim :zap:")
-            .setColor (16755763)
-            .setDescription(`An aim group for people who are already great at aiming, or are trying to improve to become the best they can be. \n\n\
-Minimum requirements: \n \n \`01\` Platinum level aim {intermediate} | \
-benchmarks: http://bit.ly/2PdgZlm \n \
-\`02\` Experience in FPS games \n \nYou can apply here: https://forms.gle/g4TrwSi8bbce1Xt2A`
-            );
-    
-    message.channel.send(sparkyAim);
-}
-
 function sendSupportSparkyEmbed(message) {
     let supportSparky = new Discord.RichEmbed()
     .setTitle("Supporting Sparky :money_with_wings:")
@@ -117,4 +104,4 @@ function sendSupportSparkyEmbed(message) {
     message.channel.send(supportSparky);
 }
 
-module.exports = { sendWelcomeToChannel, sendUpgradeEmbed, sendSparkyAimEmbed, sendSupportSparkyEmbed };
+module.exports = { sendWelcomeToChannel, sendUpgradeEmbed, sendSupportSparkyEmbed };
