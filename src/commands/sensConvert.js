@@ -18,6 +18,8 @@ const yawMap = {
     "fortnite":     0.55550,
     "doom":         0.0439453125,
     "qcde":         0.0439453125,
+    "val":          0.07,
+    "valorant":     0.07,
 };
   
 const CM_PER_INCH = 2.54;
