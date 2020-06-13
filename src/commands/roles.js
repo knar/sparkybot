@@ -12,7 +12,7 @@ function checkRoleCount(message, command, args) {
             return a.name.length - b.name.length
         });
 
-        if (roles !== null) {
+        if (roles.array().length !== 0) {
             messageArray = [];
             let numRoles = 0;
             for (const [roleId, role] of roles) {
