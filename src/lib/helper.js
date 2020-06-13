@@ -69,6 +69,16 @@ function roleFromName(guild, roleName) {
     });
 }
 
+function allRolesFromName(guild, roleName) {
+    return guild.roles.filter(role => {
+        if (role.name.toLowerCase().includes(roleName)) {
+            return true;
+        }
+        
+        return false;
+    });
+}
+
 function channelFromName(guild, channelName) {
     return guild.channels.find(channel => {
         if (channel.name.toLowerCase().includes(channelName)) {
@@ -124,5 +134,6 @@ module.exports = {
     removeTimeoutForMemberId,
     isMod,
     getEmojiByName,
-    updateMemberCount
+    updateMemberCount,
+    allRolesFromName
 }
