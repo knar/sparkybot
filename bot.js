@@ -12,6 +12,7 @@ const timeout = require('./src/commands/timeout');
 const timeoutDb = require('./src/db/timeout');
 const helper = require('./src/lib/helper');
 const coin = require('./src/commands/coin');
+const role = require('./src/commands/roles');
 const _ = require('lodash');
 
 const UPGRADE_VARIANTS = [
@@ -91,6 +92,7 @@ client.on("message", message => {
             submitCommands.submitScores(message, command, args);
             timeout.checkTimeout(message, command, args);
             coin.checkCoinCommand(message, command, args);
+            role.checkRoleCount(message, command, args);
         } catch(error) {
             console.log(error);
         }
