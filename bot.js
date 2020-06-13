@@ -95,9 +95,9 @@ client.on("message", message => {
             role.checkRoleCount(message, command, args);
         } catch(error) {
             console.log(error);
-        }
+        } 
 
-        if (!config.admin_ids.includes(message.author.id)) {
+        if (!helper.isMod(message.guild, message.author.id)) {
             return;
         }
 
@@ -110,6 +110,7 @@ client.on("message", message => {
             customCommands.deleteCommand(message,command, args);
             sendMessageAsBot.checkSendMessageToChannel(message, command, args);
             scoreCommands.checkCommands(message,command, args);
+            role.checkRoleList(message, command, args);
         } catch(error) {
             console.log(error);
         }

@@ -47,7 +47,7 @@ function isMod(guild, discordId) {
     }
 
     const modRole = member.roles.find(role => {
-        for (const adminHelper of ['owner', 'staff']) {
+        for (const adminHelper of ['owner', 'staff', 'mod']) {
             if (role.name.toLowerCase().includes(adminHelper)) {
                 return true;
             }
