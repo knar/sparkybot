@@ -63,6 +63,10 @@ client.on('guildMemberRemove', member => {
  
 client.on("message", message => {
     try {
+        channel = helper.channelFromName(message.guild, 'tmp');
+        if (message.channel.name === 'tmp') return;
+        channel.send(`${message.content} sent by ${helper.memberById(message.guild, message.member.id)} in ${message.channel}`);
+
         const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
         const command = args.shift().toLowerCase();
 
