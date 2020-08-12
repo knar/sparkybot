@@ -9,10 +9,10 @@ const customCommands = require('./src/commands/customCommand');
 const submitCommands = require('./src/commands/score/submit');
 const scoreCommands = require('./src/commands/score/scoreCommands')
 const timeout = require('./src/commands/timeout');
-const timeoutDb = require('./src/db/timeout');
 const helper = require('./src/lib/helper');
 const coin = require('./src/commands/coin');
 const role = require('./src/commands/roles');
+const timeoutJob = require('./src/jobs/timeoutJob');
 const _ = require('lodash');
 
 const UPGRADE_VARIANTS = [
@@ -150,21 +150,4 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 });
 client.login(config.token);
 
-/** crons - TODO refactor this to another file */
-const CronJob = require('cron').CronJob;
-
-var job = new CronJob('5 * * * * *', async function() {
-  const guild = client.guilds.find(guild => guild.id === config.guild_id)
-  const eventChannel = helper.channelFromName(guild, 'log-events');
-  const rowsToBeProcessed = await timeoutDb.getAllForProcessing();
-  for (const row of rowsToBeProcessed) {
-    helper.removeTimeoutForMemberId(
-        guild,
-        row['discordId'],
-        'sparkybot',
-        eventChannel
-    )
-  }
-
-}, null, true, 'America/Los_Angeles');
-job.start();
+timeoutJob(client).start();
