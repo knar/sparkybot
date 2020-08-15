@@ -1,6 +1,7 @@
 const CronJob = require('cron').CronJob;
 const timeoutDb = require('../db/timeout');
 const helper = require('../lib/helper');
+const config = require('../../config')
 
 function timeoutJob(client) {
     return new CronJob('5 * * * * *', async function() {
