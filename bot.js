@@ -13,6 +13,7 @@ const helper = require('./src/lib/helper');
 const coin = require('./src/commands/coin');
 const role = require('./src/commands/roles');
 const timeoutJob = require('./src/jobs/timeoutJob');
+const challengerJob = require('./src/jobs/challengerJob');
 const _ = require('lodash');
 
 const UPGRADE_VARIANTS = [
@@ -151,3 +152,4 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 client.login(config.token);
 
 timeoutJob(client).start();
+challengerJob(client).start();
