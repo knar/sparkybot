@@ -18,4 +18,4 @@ function timeoutJob(client) {
     }, null, true, 'America/Los_Angeles');
 }
 
-module.exports = timeoutJob;
+module.exports = { timeoutJob };
