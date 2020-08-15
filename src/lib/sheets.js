@@ -4,7 +4,7 @@ const { google } = require("googleapis");
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 const TOKEN_PATH = './config/sheets/token.json';
-const CREDENTIALS_PATH = './config/sheets/credentials.json'
+const CREDENTIALS_PATH = './config/sheets/credentials.json';
 
 // Callback receives 2d array of data from spreadsheet
 function useSheetData(sheetId, range, callback) {
@@ -21,7 +21,7 @@ function useSheetData(sheetId, range, callback) {
                     if (err) return console.log("The API returned an error: " + err);
                     const rows = res.data.values; 
                     if (rows.length) {
-                        callback(rows)
+                        callback(rows);
                     }
                     else {
                         console.log('No data found.');
@@ -75,4 +75,4 @@ function getNewToken(oAuth2Client, callback) {
     });
 }
 
-module.exports = { useSheetData }
+module.exports = { useSheetData };
